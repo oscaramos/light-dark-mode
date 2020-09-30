@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import styled from 'styled-components'
 
 import Switch from '../components/Switch'
 import Button from '../components/Button'
@@ -22,8 +22,9 @@ import { ReactComponent as MediumIcon } from '../assets/brands/medium-brands.svg
 import { ReactComponent as InstagramIcon } from '../assets/brands/instagram-brands.svg'
 import { ReactComponent as YoutubeIcon } from '../assets/brands/youtube-brands.svg'
 
-import LightMode from '../assets/light_mode.svg'
-import DarkMode from '../assets/dark_mode.svg'
+import { ReactComponent as LightMode } from '../assets/light_mode.svg'
+import { ReactComponent as DarkMode } from '../assets/dark_mode.svg'
+import { useDarkMode } from '../context/DarkMode'
 
 
 
@@ -50,6 +51,14 @@ const Header = styled.header`
   justify-content: space-between;
 `
 
+const AboutCardsContainer = styled.div`
+  display: flex; 
+  flex-direction: row;
+  @media screen and (max-width: 960px) {
+    flex-direction: column;    
+  }
+`
+
 const AboutCard = styled.div`
   text-align: center;
   border: 1px solid black;
@@ -70,11 +79,26 @@ const ProjectCard = styled.div`
   margin-top: 64px;
 `
 
+const DarkModeIcon = styled(DarkMode)`
+  width: 50px;
+  height: 50px;
+  color: ${({theme}) => theme.onBackgroundAlt};
+`
+
+const LightModeIcon = styled(LightMode)`
+  width: 50px;
+  height: 50px;
+  color: ${({theme}) => theme.onBackground};
+`
+
+
 function Home() {
-  const theme = useContext(ThemeContext)
+  const [theme, toggleTheme] = useDarkMode()
+  const isDarkMode = theme === 'dark'
 
   return (
     <>
+      {/*----- Header -----*/}
       <Header>
         <nav>
           <A href='#home'>HOME</A>
@@ -82,12 +106,17 @@ function Home() {
           <A href='#projects'>PROJECTS</A>
           <A href='#contact'>CONTACT</A>
         </nav>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <div>Light mode</div>
-          <img src={LightMode} alt='sun' style={{ width: 50, height: 50 }} />
-          <Switch />
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+          <div>{isDarkMode? 'Dark mode': 'Light mode'}</div>
+          {
+            isDarkMode
+              ? <DarkModeIcon />
+              : <LightModeIcon />
+          }
+          <Switch checked={isDarkMode} onChange={toggleTheme} />
         </div>
       </Header>
+
       {/*----- Home Section -----*/}
       <Section id='home'>
         <div style={{ textAlign: 'center' }}>
@@ -99,7 +128,7 @@ function Home() {
       {/*----- About Section -----*/}
       <Section id='about'>
         <h1>Undraw Illustrations</h1>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <AboutCardsContainer>
           <AboutCard>
             <H2>Online shopping</H2>
             <img src={OnlineShoppingLight} alt='woman holding a phone aside to shopping webpage'
@@ -115,7 +144,7 @@ function Home() {
             <img src={ScrumLight} alt='man and woman managing an kanban board'
                  style={{ height: 300, width: 300, padding: 20 }} />
           </AboutCard>
-        </div>
+        </AboutCardsContainer>
       </Section>
 
       {/*----- Projects Section -----*/}
