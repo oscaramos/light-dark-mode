@@ -5,7 +5,7 @@ const Button = styled.button`
   height: 40px;
   border: none;
   border-radius: 10px;
-  color: white;
+  color: ${({theme}) => theme.onPrimary};
   outline: none;
   cursor: pointer;
 
