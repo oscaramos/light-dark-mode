@@ -62,10 +62,10 @@ const SliderInput = styled.input`
 `
 
 
-function Switch() {
+function Switch({ checked, onChange }) {
   return (
     <SwitchContainer>
-      <SliderInput type='checkbox' />
+      <SliderInput type='checkbox' checked={checked} onChange={onChange} />
       <Slider round />
     </SwitchContainer>
   )
