@@ -6,6 +6,7 @@ export const lightTheme = {
   onBackgroundAlt: 'rgba(66, 66, 66,0.7)',
   background: '#FAFAFA',
 }
+
 export const darkTheme = {
   primaryColor: 'rgb(150, 65, 255)',
   secondaryColor: 'rgb(3, 218, 197)',
