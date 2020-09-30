@@ -1,5 +1,12 @@
 import React, { useContext } from 'react'
-import styled, { css, ThemeContext } from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
+
+import Switch from '../components/Switch'
+import Button from '../components/Button'
+import A from '../components/A'
+import H1 from '../components/H1'
+import H2 from '../components/H2'
+import IconButton from '../components/IconButton'
 
 import OnlineShoppingLight from '../assets/about/online_shopping_light.svg'
 import OnlineShoppingDark from '../assets/about/online_shopping_dark.svg'
@@ -19,18 +26,13 @@ import LightMode from '../assets/light_mode.svg'
 import DarkMode from '../assets/dark_mode.svg'
 
 
+
 const Section = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
-`
-
-const H1 = styled.h1`
-  font-family: 'Kaushan Script', cursive;
-  font-size: 100px;
-  margin: 0 0 10px;
 `
 
 const Header = styled.header`
@@ -48,24 +50,6 @@ const Header = styled.header`
   justify-content: space-between;
 `
 
-const A = styled.a`
-  margin-right: 25px;
-  color: ${({ theme }) => theme.primaryColor};
-  text-decoration: none;
-  border-bottom: 3px solid transparent;
-  font-weight: bold;
-  :hover {
-    color: ${({ theme }) => theme.onBackground};
-    border-bottom: 3px solid;    
-  }
-`
-
-const H2 = styled.h2`
-  color: ${({ theme }) => theme.onBackgroundAlt};
-  font-size: 32px;
-  font-weight: normal;
-`
-
 const AboutCard = styled.div`
   text-align: center;
   border: 1px solid black;
@@ -73,68 +57,6 @@ const AboutCard = styled.div`
   background: white;
   margin: 0 10px;
   box-shadow: 0 10px 14px 2px rgba(163,163,163,1);
-`
-
-const Button = styled.button`
-  min-width: 100px;
-  height: 40px;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  outline: none;
-  cursor: pointer;
-
-  ${props => props.primary && css`
-    background: ${({ theme }) => theme.primaryColor};
-    &:hover {
-      filter: brightness(110%);
-    }
-  `}
-  
-  ${props => props.secondary && css`
-    background: ${({ theme }) => theme.secondaryColor};    
-    &:hover {
-      filter: brightness(110%);
-    }
-  `}
-  
-  ${props => props.disabled && css`
-    cursor: not-allowed;
-    opacity: 0.4;
-  `}
-  
-  ${props => props.outline && css`
-    background: ${({ theme }) => theme.background};    
-    color: ${({ theme }) => theme.onBackground};
-    &:hover {
-      filter: none;
-      color: ${({ theme }) => theme.background};
-    }
-  `}
- 
-  
-  ${props => props.outline && props.primary && css`
-    border: 2px solid ${({ theme }) => theme.primaryColor};    
-    &:hover {
-      background: ${({ theme }) => theme.primaryColor};
-    }
-  `}
-  
-  ${props => props.outline && props.secondary && css`
-    border: 2px solid ${({ theme }) => theme.secondaryColor};
-    &:hover {
-      background: ${({ theme }) => theme.secondaryColor};
-    }
-  `}
-  
-  ${props => props.disabled && props.outline && css`
-    cursor: not-allowed;
-    opacity: 0.4;
-    &:hover {
-      background: ${({ theme }) => theme.background};
-      color: ${({ theme }) => theme.onBackground};
-    }
-  `}
 `
 
 const ProjectCard = styled.div`
@@ -147,74 +69,6 @@ const ProjectCard = styled.div`
   width: 50%;
   margin-top: 64px;
 `
-
-const IconButton = styled.div`
-  cursor: pointer;
-  color: ${({ theme }) => theme.primaryColor};
-  :hover {
-    color: ${({ theme }) => theme.onBackground};    
-  }
-`
-
-const Switch = styled.label`
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-`
-
-const Slider = styled.span`
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-  
-  :before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  ${props => props.round && css`
-    border-radius: 34px;
-    :before {
-      border-radius: 50%;
-    }
-  `}
-`
-
-const SliderInput = styled.input`
-  :checked + ${Slider} {
-    background-color: #2196F3;
-  }
-  
-  :focus + ${Slider} {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  :checked + ${Slider}:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-`
-
 
 function Home() {
   const theme = useContext(ThemeContext)
@@ -231,10 +85,7 @@ function Home() {
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <div>Light mode</div>
           <img src={LightMode} alt='sun' style={{ width: 50, height: 50 }} />
-          <Switch>
-            <SliderInput type='checkbox' />
-            <Slider round />
-          </Switch>
+          <Switch />
         </div>
       </Header>
       {/*----- Home Section -----*/}
