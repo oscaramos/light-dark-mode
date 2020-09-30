@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import Switch from '../components/Switch'
@@ -61,11 +61,12 @@ const AboutCardsContainer = styled.div`
 
 const AboutCard = styled.div`
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid ${({ theme }) => theme.secondaryColor };
   border-radius: 10px;
-  background: white;
+  background: ${({ theme }) => theme.background};
   margin: 0 10px;
-  box-shadow: 0 10px 14px 2px rgba(163,163,163,1);
+  box-shadow: 0 10px 14px 2px rgba(0, 0, 0, 0.5);
+  
 `
 
 const ButtonsContainer = styled.div`
@@ -79,8 +80,8 @@ const ButtonsContainer = styled.div`
 `
 
 const ProjectCard = styled.div`
-  color: white;
-  background: ${({ theme }) => theme.onBackgroundAlt};
+  color: ${({theme}) => theme.onPrimary};
+  background: ${({theme}) => theme.isDarkMode? 'rgb(255 255 255 / 50%)': 'rgb(0 0 0 / 50%)'};
   padding: 32px;
   line-height: 24px;
   font-weight: lighter;
@@ -126,7 +127,7 @@ function Home() {
           <A href='#contact'>CONTACT</A>
         </nav>
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-          <div>{isDarkMode? 'Dark mode': 'Light mode'}</div>
+          <div>{isDarkMode ? 'Dark mode' : 'Light mode'}</div>
           {
             isDarkMode
               ? <DarkModeIcon />
@@ -146,21 +147,21 @@ function Home() {
 
       {/*----- About Section -----*/}
       <Section id='about'>
-        <h1>Undraw Illustrations</h1>
+        <H1>Undraw Illustrations</H1>
         <AboutCardsContainer>
           <AboutCard>
             <H2>Online shopping</H2>
-            <img src={OnlineShoppingLight} alt='woman holding a phone aside to shopping webpage'
+            <img src={isDarkMode ? OnlineShoppingDark : OnlineShoppingLight} alt='woman holding a phone aside to shopping webpage'
                  style={{ height: 300, width: 300, padding: 20 }} />
           </AboutCard>
           <AboutCard>
             <H2>Project Team</H2>
-            <img src={ProjectTeamLight} alt='man holding scrum histories and woman with laptop'
+            <img src={isDarkMode ? ProjectTeamDark: ProjectTeamLight} alt='man holding scrum histories and woman with laptop'
                  style={{ height: 300, width: 300, padding: 20 }} />
           </AboutCard>
           <AboutCard>
             <H2>Scrum Methodology</H2>
-            <img src={ScrumLight} alt='man and woman managing an kanban board'
+            <img src={isDarkMode ? ScrumDark: ScrumLight} alt='man and woman managing an kanban board'
                  style={{ height: 300, width: 300, padding: 20 }} />
           </AboutCard>
         </AboutCardsContainer>
