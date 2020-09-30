@@ -68,6 +68,16 @@ const AboutCard = styled.div`
   box-shadow: 0 10px 14px 2px rgba(163,163,163,1);
 `
 
+const ButtonsContainer = styled.div`
+  display: flex; 
+  flex-direction: row;
+  gap: 15px;
+  
+  @media screen and (max-width: 960px) {
+    flex-direction: column;  
+  }
+`
+
 const ProjectCard = styled.div`
   color: white;
   background: ${({ theme }) => theme.onBackgroundAlt};
@@ -79,15 +89,24 @@ const ProjectCard = styled.div`
   margin-top: 64px;
 `
 
+const ContactSection = styled(Section)`
+  flex-direction: row;
+  gap: 40px;
+  @media screen and (max-width: 960px) {
+    flex-direction: column;  
+    gap: 20px;
+  }
+`
+
 const DarkModeIcon = styled(DarkMode)`
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   color: ${({theme}) => theme.onBackgroundAlt};
 `
 
 const LightModeIcon = styled(LightMode)`
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   color: ${({theme}) => theme.onBackground};
 `
 
@@ -150,14 +169,14 @@ function Home() {
       {/*----- Projects Section -----*/}
       <Section id='projects'>
         <H1>Buttons</H1>
-        <div style={{ display: 'flex', flexDirection: 'row', columnGap: 15 }}>
+        <ButtonsContainer>
           <Button primary>Primary</Button>
           <Button secondary>Secondary</Button>
           <Button primary disabled>Disabled</Button>
           <Button primary outline>Outline</Button>
           <Button secondary outline>Alt Outline</Button>
           <Button primary outline disabled>Disabled</Button>
-        </div>
+        </ButtonsContainer>
         <ProjectCard>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, omnis voluptatum.
           Adipisci autem consectetur consequatur cumque dicta eum exercitationem ipsum molestiae
@@ -166,7 +185,7 @@ function Home() {
       </Section>
 
       {/*----- Contact Section -----*/}
-      <Section id='contact' style={{ flexDirection: 'row', columnGap: 40 }}>
+      <ContactSection id='contact'>
         <IconButton>
           <GithubIcon style={{ width: 100, height: 100 }} />
         </IconButton>
@@ -185,7 +204,7 @@ function Home() {
         <IconButton>
           <YoutubeIcon style={{ width: 100, height: 100 }} />
         </IconButton>
-      </Section>
+      </ContactSection>
     </>
   )
 }
