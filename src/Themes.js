@@ -3,8 +3,9 @@ export const lightTheme = {
   secondaryColor: 'rgb(27,153,153)',
   onPrimary: 'rgb(250, 250, 250)',
   onBackground: 'rgb(66, 66, 66)',
-  onBackgroundAlt: 'rgba(66, 66, 66,0.7)',
+  onBackgroundAlt: 'rgba(66, 66, 66, 0.7)',
   background: '#FAFAFA',
+  isDarkMode: false
 }
 
 export const darkTheme = {
@@ -14,4 +15,5 @@ export const darkTheme = {
   onBackground: 'rgba(255, 255, 255, 0.9)',
   onBackgroundAlt: 'rgba(255, 255, 255, 0.7)',
   background: '#121212',
+  isDarkMode: true
 }
