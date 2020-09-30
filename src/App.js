@@ -1,17 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import { lightTheme, darkTheme } from './Themes'
-import { GlobalStyles } from './globalStyles'
+
 import Home from './pages/Home'
 
+import { darkTheme, lightTheme } from './Themes'
+import { GlobalStyles } from './globalStyles'
+
+import { useDarkMode } from './context/DarkMode'
+
+
 function App() {
-  const [theme, setTheme] = useState('light');
-  const themeToggler = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light')
-  }
+  const [theme] = useDarkMode()
+  const themeMode = theme === 'light' ? lightTheme : darkTheme
 
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider theme={themeMode}>
       <GlobalStyles />
       <Home />
     </ThemeProvider>
